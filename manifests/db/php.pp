@@ -1,3 +1,5 @@
 class profiles::db::php {
-  include mysql::php
+  class { 'mysql':
+    php_enable => true,
+  }
 }
