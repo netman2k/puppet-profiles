@@ -13,7 +13,6 @@ system constitutes consent to monitoring and auditing.
     content => $_motd_content,
   }
 
-  # Firewall settings begin
   resources { 'firewall':
       purge => true,
   }
@@ -26,7 +25,14 @@ system constitutes consent to monitoring and auditing.
   class { ['profiles::firewall::pre', 'profiles::firewall::post']: }
   class { 'firewall': }
 
-  # Firewall settings end
+
+  firewall { '200 accept HTTP':
+    chain  => 'INPUT',
+    state  => ['NEW'],
+    dport  => '22',
+    proto  => 'tcp',
+    action => 'accept',
+  }
 
 }
 
