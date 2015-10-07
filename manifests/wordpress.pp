@@ -7,6 +7,11 @@ class profiles::wordpress {
     ensure => present,
   }
 
+  User <| title == $::apache::params::user |>{
+    groups +> 'wordpress',
+    require => Group['wordpress'],
+  }
+
   user { 'wordpress':
     ensure   => present,
     gid      => 'wordpress',
