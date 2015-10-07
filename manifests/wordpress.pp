@@ -36,4 +36,12 @@ class profiles::wordpress {
     docroot       => '/var/www/site',
     default_vhost => true,
   }
+
+  firewall { '300 accept HTTP':
+    chain  => 'INPUT',
+    state  => ['NEW'],
+    dport  => '80',
+    proto  => 'tcp',
+    action => 'accept',
+  }
 }

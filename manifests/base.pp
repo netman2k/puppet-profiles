@@ -14,4 +14,10 @@ class profiles::base {
     content => $_motd_content,
   }
 
+
+  Firewall {
+    before  => Class['profiles::firewall::post'],
+    require => Class['profiles::firewall::pre'],
+  }
+
 }
