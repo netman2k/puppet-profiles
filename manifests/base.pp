@@ -13,10 +13,20 @@ system constitutes consent to monitoring and auditing.
     content => $_motd_content,
   }
 
+  # Firewall settings begin
+  resources { 'firewall':
+      purge => true,
+  }
 
   Firewall {
     before  => Class['profiles::firewall::post'],
     require => Class['profiles::firewall::pre'],
   }
 
+  class { ['profiles::firewall::pre', 'profiles::firewall::post']: }
+  class { 'firewall': }
+
+  # Firewall settings end
+
 }
+
