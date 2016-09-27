@@ -9,7 +9,7 @@ class profiles::rsyslog(
   $action_queue_timeout_enqueue = 0,
   $log_local_config_1 = [ 'local6.notice  /var/log/bashlog' ],
   $log_local_config_2 = [],
-  $remote_servers = hiera_hash('profiles::rsyslog)['remote_servers'],
+  $remote_servers = hiera_hash('profiles::rsyslog')['remote_servers'],
 ){
 
 #  $modules = [
