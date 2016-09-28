@@ -5,11 +5,12 @@
 #  reference: http://www.rsyslog.com/doc/v7-stable/concepts/queues.html#filled-up-queues
 class profiles::rsyslog(
   $rate_limit_interval = undef,
-  $mainmsg_queue_timeout_enqueue = 0,  
+  $mainmsg_queue_timeout_enqueue = 0,
   $action_queue_timeout_enqueue = 0,
   $log_local_config_1 = [ 'local6.notice  /var/log/bashlog' ],
   $log_local_config_2 = [],
-  $remote_servers = hiera_hash('profiles::rsyslog')['remote_servers'],
+  $remote_servers = hiera_hash('profiles::rsyslog::remote_servers', false),
+  $enable_firewall = true,
 ){
 
 #  $modules = [
@@ -21,7 +22,7 @@ class profiles::rsyslog(
 
 
   # Custom settings for local log
-  $_log_local_custom = flatten([ 
+  $_log_local_custom = flatten([
     '', # JUST LEAVE IT FOR SPACING BETWEEN COMMENT AND THIS
     $log_local_config_1,
     $log_local_config_2,
@@ -34,7 +35,7 @@ class profiles::rsyslog(
 #    modules       => $modules,
   }
 
-  class { '::rsyslog::client': 
+  class { '::rsyslog::client':
     log_local             => true,
     log_local_custom      => join($_log_local_custom, "\n"),
     spool_timeoutenqueue  => $action_queue_timeout_enqueue,
