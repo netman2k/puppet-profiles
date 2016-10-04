@@ -19,6 +19,7 @@ class profiles::ntp(
   $force_to_use_chrony  = false,
   $ntp_servers          = hiera_array('profiles::ntp::servers'),
   $restrict             = hiera_array('profiles::ntp::restrict'),
+  $queryhosts           = hiera_array('profiles::ntp::queryhosts'),
   $enable_firewall      = false,
 ){
 
@@ -36,8 +37,8 @@ class profiles::ntp(
   if $_load_chrony {
 
     class { 'profile::ntp::chrony':
-      servers => $ntp_servers,
-
+      servers    => $ntp_servers,
+      queryhosts => $queryhosts,
     }
 
   }else{
@@ -55,4 +56,3 @@ class profiles::ntp(
     # TODO - Firewall settings here
   }
 }
-
