@@ -7,7 +7,7 @@ class profiles::rsyslog(
   $rate_limit_interval = undef,
   $mainmsg_queue_timeout_enqueue = 0,
   $action_queue_timeout_enqueue = 0,
-  $log_local_config_1 = [ 'local6.notice  /var/log/bashlog' ],
+  $log_local_config_1 = [ 'local6.notice  /var/log/bash' ],
   $log_local_config_2 = [],
   $remote_servers = hiera_hash('profiles::rsyslog::remote_servers', false),
   $enable_firewall = true,
@@ -30,7 +30,7 @@ class profiles::rsyslog(
     "\$MainMsgQueueTimeoutEnqueue ${mainmsg_queue_timeout_enqueue}",
   ])
 
-  class { '::rsyslog': 
+  class { '::rsyslog':
     preserve_fqdn => true,
 #    modules       => $modules,
   }
