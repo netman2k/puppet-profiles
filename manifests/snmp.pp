@@ -81,4 +81,6 @@ class profiles::snmp (
     services     => $sys_services,
     sysname      => $sys_name,
   }
+
+  # TODO: Firewall settings
 }
