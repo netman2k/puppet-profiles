@@ -57,14 +57,21 @@ class profiles::snmp (
     }
   }
 
+  $ip = $::networking['ip']
+  $ip6 = $::networking['ip6']
+
+  # TODO: @20161006 by daehyung.lee
+  # current version of the net-snmp daemon could not be bound onto
+  # ipv6 ip address. I don't know why I followed the instruction of the manpage
+  # that's why I disabled it
   class { 'snmp':
     agentaddress => [
       'udp:127.0.0.1:161',
       'udp6:[::1]:161',
-      "tcp:${::networking}[ip]:161",
-      "tcp6:${::networking}[ip6]:161",
-      "udp:${::networking}[ip]:161",
-      "udp6:${::networking}[ip6]:161",
+      "tcp:${ip}:161",
+      #"tcp6:${ip6}:161",
+      "udp:${ip}:161",
+      #"udp6:${ip6}:161",
     ],
     ro_community => $ro_community,
     location     => $sys_location,
