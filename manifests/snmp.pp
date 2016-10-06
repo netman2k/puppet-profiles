@@ -66,6 +66,8 @@ class profiles::snmp (
   # that's why I disabled it
   class { 'snmp':
     agentaddress => [
+      'tcp:127.0.0.1:161',
+      'tcp6:::1:161',
       'udp:127.0.0.1:161',
       'udp6:[::1]:161',
       "tcp:${ip}:161",
