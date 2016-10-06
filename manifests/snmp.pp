@@ -49,12 +49,28 @@ class profiles::snmp (
 
   if $snmpv3_user {
     validate_hash($snmpv3_user)
-    snmp::snmpv3_user { $snmpv3_user['name'] :
-      authtype => $snmpv3_user['authtype'],
-      authpass => $snmpv3_user['authpass'],
-      privtype => $snmpv3_user['privtype'],
-      privpass => $snmpv3_user['privpass'],
-    }
+    # TODO: Check newest module whether support this
+    # Current version of razersedge/snmp module could not handle
+    # snmp v3 user creating correctly on CentOS 7
+    # so I did not used snmp::snmpv3_user at this time.
+
+    # ::snmp::snmpv3_user { $snmpv3_user['name'] :
+    #   authtype => $snmpv3_user['authtype'],
+    #   authpass => $snmpv3_user['authpass'],
+    #   privtype => $snmpv3_user['privtype'],
+    #   privpass => $snmpv3_user['privpass'],
+    # }
+
+    $_user = $snmpv3_user['name']
+    $_authtype = $snmpv3_user['authtype']
+    $_authpass = $snmpv3_user['authpass']
+    $_privtype = $snmpv3_user['privtype']
+    $_privpass = $snmpv3_user['privpass']
+
+    $_creatUser_syntax = [ "rouser ${_user}",
+      "createUser ${_user} ${_authtype} ${_authpass} ${_privtype} ${_privpass}",
+    ]
+
   }else{
     warning('The snmpv3 user not defined via hiera or class Parameters')
   }
@@ -66,7 +82,7 @@ class profiles::snmp (
   # current version of the net-snmp daemon could not be bound onto
   # ipv6 ip address. I don't know why I followed the instruction of the manpage
   # that's why I disabled it
-  class { 'snmp':
+  class { '::snmp':
     agentaddress => [
       'tcp:127.0.0.1:161',
       'tcp6:::1:161',
@@ -82,6 +98,7 @@ class profiles::snmp (
     contact      => $sys_contact,
     services     => $sys_services,
     sysname      => $sys_name,
+    snmpd_config => $_creatUser_syntax,
   }
 
   # TODO: Firewall settings
