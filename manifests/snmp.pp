@@ -49,12 +49,14 @@ class profiles::snmp (
 
   if $snmpv3_user {
     validate_hash($snmpv3_user)
-    snmp::snmpv3_user { $snmpv3_user[name] :
-      authtype => $snmpv3_user[authtype],
-      authpass => $snmpv3_user[authpass],
-      privtype => $snmpv3_user[privtype],
-      privpass => $snmpv3_user[privpass],
+    snmp::snmpv3_user { $snmpv3_user['name'] :
+      authtype => $snmpv3_user['authtype'],
+      authpass => $snmpv3_user['authpass'],
+      privtype => $snmpv3_user['privtype'],
+      privpass => $snmpv3_user['privpass'],
     }
+  }else{
+    warning('The snmpv3 user not defined via hiera or class Parameters')
   }
 
   $ip = $::networking['ip']
