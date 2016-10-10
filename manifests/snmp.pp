@@ -39,11 +39,11 @@
 ## Authors
 #   Daehyung.lee <daehyung@gmail.com>
 class profiles::snmp (
-  $ro_community           = hiera('profiles::snmp::ro_community', undef),
-  $sys_contact            = hiera('profiles::snmp::sys_contact', 'infra-sys@cdnetworks.com'),
-  $sys_location           = hiera('profiles::snmp::sys_location', 'Unknown'),
-  $sys_services           = hiera('profiles::snmp::sys_services', 72),
-  $sys_name               = hiera('profiles::snmp::sys_name', $::fqdn),
+  $ro_community           = hiera('profiles::snmp["ro_community"]', undef),
+  $sys_contact            = hiera('profiles::snmp["sys_contact"]', 'infra-sys@cdnetworks.com'),
+  $sys_location           = hiera('profiles::snmp["sys_location"]', 'Unknown'),
+  $sys_services           = hiera('profiles::snmp["sys_services"]', 72),
+  $sys_name               = hiera('profiles::snmp["sys_name"]', $::fqdn),
   $snmpv3_user            = hiera_hash('profiles::snmp::snmpv3_user', false),
 ){
 
