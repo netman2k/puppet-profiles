@@ -45,6 +45,11 @@ class profiles::snmp (
   $sys_services           = hiera('profiles::snmp::sys_services', 72),
   $sys_name               = hiera('profiles::snmp::sys_name', $::fqdn),
   $snmpv3_user            = hiera_hash('profiles::snmp::snmpv3_user', false),
+  $trapsink               = hiera('profiles::snmp::trapsink', undef),
+  $informsink             = hiera('profiles::snmp::informsink', undef),
+  $authtrapenable         = hiera('profiles::snmp::authtrapenable', undef),
+  $trapcommunity          = hiera('profiles::snmp::trapcommunity', undef),
+  $snmpd_options          = hiera('profiles::snmp::snmp_options', []),
 ){
 
   if $snmpv3_user {
@@ -70,9 +75,9 @@ class profiles::snmp (
     $_creatUser_syntax = [ "rouser ${_user}",
       "createUser ${_user} ${_authtype} ${_authpass} ${_privtype} ${_privpass}",
     ]
-
   }else{
     warning('The snmpv3 user not defined via hiera or class Parameters')
+    $_creatUser_syntax = []
   }
 
   $ip = $::networking['ip']
@@ -98,7 +103,7 @@ class profiles::snmp (
     contact      => $sys_contact,
     services     => $sys_services,
     sysname      => $sys_name,
-    snmpd_config => $_creatUser_syntax,
+    snmpd_config => flatten([$_creatUser_syntax, $snmpd_options,])
   }
 
   # TODO: Firewall settings
