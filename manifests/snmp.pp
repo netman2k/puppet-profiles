@@ -62,10 +62,10 @@ class profiles::snmp (
     # }
 
     $_user = $snmpv3_user['name']
-    $_authtype = $snmpv3_user['authtype']
-    $_authpass = $snmpv3_user['authpass']
-    $_privtype = $snmpv3_user['privtype']
-    $_privpass = $snmpv3_user['privpass']
+    $_authtype = $_user['authtype']
+    $_authpass = $_user['authpass']
+    $_privtype = $_user['privtype']
+    $_privpass = $_user['privpass']
 
     $_creatUser_syntax = [ "rouser ${_user}",
       "createUser ${_user} ${_authtype} ${_authpass} ${_privtype} ${_privpass}",
