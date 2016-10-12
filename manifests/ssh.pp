@@ -14,7 +14,7 @@ class profiles::ssh(
   $ports = $options['Port']
 
   $ports.each |String $port| {
-    selinux::port { "selinux_ssh_${port}":
+    ::selinux::port { "selinux_ssh_${port}":
       context  => 'ssh_port',
       port     => $port,
       protocol => 'tcp',
