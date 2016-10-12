@@ -26,4 +26,6 @@ class profiles::ssh(
 
   include ::ssh
 
+  # TODO
+  # Write down Firewall Settings here
 }
