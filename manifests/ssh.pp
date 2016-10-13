@@ -7,9 +7,7 @@
 ## Authors
 # Daehyung.lee <daehyung@gmail.com>
 #
-class profiles::ssh(
-
-){
+class profiles::ssh {
   $options = hiera_hash('ssh::server_options')
   $ports = $options['Port']
 

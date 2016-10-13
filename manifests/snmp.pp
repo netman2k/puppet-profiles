@@ -3,6 +3,8 @@
 #
 ## Parameters
 #
+## Variables
+#
 # [*ro_community]
 #   Read-only (RO) community string or array for snmptrap daemon.
 #   Default: undef
@@ -34,23 +36,21 @@
 #     privpass => XXX,
 #   }
 #
-## Variables
-#
 ## Authors
 #   Daehyung.lee <daehyung@gmail.com>
-class profiles::snmp (
-  $ro_community           = hiera('profiles::snmp::ro_community', undef),
-  $sys_contact            = hiera('profiles::snmp::sys_contact', 'infra-sys@cdnetworks.com'),
-  $sys_location           = hiera('profiles::snmp::sys_location', 'Unknown'),
-  $sys_services           = hiera('profiles::snmp::sys_services', 72),
-  $sys_name               = hiera('profiles::snmp::sys_name', $::fqdn),
-  $snmpv3_user            = hiera_hash('profiles::snmp::snmpv3_user', false),
-  $trapsink               = hiera('profiles::snmp::trapsink', undef),
-  $informsink             = hiera('profiles::snmp::informsink', undef),
-  $authtrapenable         = hiera('profiles::snmp::authtrapenable', undef),
-  $trapcommunity          = hiera('profiles::snmp::trapcommunity', undef),
-  $snmpd_options          = hiera('profiles::snmp::snmp_options', []),
-){
+class profiles::snmp {
+
+  $ro_community           = hiera('profiles::snmp::ro_community', undef
+  $sys_contact            = hiera('profiles::snmp::sys_contact', 'infra-sys@cdnetworks.com'
+  $sys_location           = hiera('profiles::snmp::sys_location', 'Unknown'
+  $sys_services           = hiera('profiles::snmp::sys_services', 72
+  $sys_name               = hiera('profiles::snmp::sys_name', $::fqdn
+  $snmpv3_user            = hiera_hash('profiles::snmp::snmpv3_user', false
+  $trapsink               = hiera('profiles::snmp::trapsink', undef
+  $informsink             = hiera('profiles::snmp::informsink', undef
+  $authtrapenable         = hiera('profiles::snmp::authtrapenable', undef
+  $trapcommunity          = hiera('profiles::snmp::trapcommunity', undef
+  $snmpd_options          = hiera('profiles::snmp::snmp_options', []
 
   if $snmpv3_user {
     validate_hash($snmpv3_user)

@@ -14,14 +14,14 @@
 #
 # Daehyung Lee <daehyung@gmail.com>
 #
-class profiles::ntp(
-  $force_to_use_ntpd    = false,
-  $force_to_use_chrony  = false,
-  $ntp_servers          = hiera_array('profiles::ntp::servers'),
-  $restrict             = hiera_array('profiles::ntp::restrict'),
-  $queryhosts           = hiera_array('profiles::ntp::queryhosts'),
-  $enable_firewall      = false,
-){
+class profiles::ntp {
+
+  $force_to_use_ntpd    = hiera('profiles::ntp::force_to_use_ntpd')
+  $force_to_use_chrony  = hiera('profiles::ntp::force_to_use_chrony')
+  $ntp_servers          = hiera_array('profiles::ntp::servers')
+  $restrict             = hiera_array('profiles::ntp::restrict')
+  $queryhosts           = hiera_array('profiles::ntp::queryhosts')
+  $enable_firewall      = hiera('profiles::ntp::enable_firewall')
 
   # Decides which daemon should use for time syncing
   if !$::is_virtual and !$force_to_use_ntpd {
