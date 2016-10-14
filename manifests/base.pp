@@ -9,6 +9,7 @@
 class profiles::base {
 
   $motd_content =  hiera('profiles::base::motd')
+  $login_defs_options = hiera_hash('profiles::base::login_defs::options')
 
   file { '/etc/motd':
     ensure  => file,
@@ -16,6 +17,8 @@ class profiles::base {
   }
 
   class { '::login_defs':
-
+    options => $login_defs_options,
   }
+
+  
 }
