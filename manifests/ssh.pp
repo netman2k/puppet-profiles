@@ -12,14 +12,21 @@ class profiles::ssh {
   $client_options = hiera_hash('ssh::client_options')
   $ports = $server_options['Port']
 
-  # Set SELinux for SSH
-  # This will add ports into ssh_port_t context
   include  '::selinux'
+
   $ports.each |Integer $port| {
+    # Set SELinux for SSH
+    # This will add ports into ssh_port_t context
     ::selinux::port { "selinux_ssh_${port}":
       context  => 'ssh_port_t',
       port     => $port,
       protocol => 'tcp',
+    }
+    # Adds service ports into /etc/services
+    ::etc_services { 'ssh/tcp':
+      port    => $port,
+      aliases => [ 'kss-ssh' ],
+      comment => 'The Secure Shell (SSH) Protocol for CDNetworks'
     }
   }
 
