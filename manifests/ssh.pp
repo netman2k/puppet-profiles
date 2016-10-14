@@ -8,8 +8,9 @@
 # Daehyung.lee <daehyung@gmail.com>
 #
 class profiles::ssh {
-  $options = hiera_hash('ssh::server_options')
-  $ports = $options['Port']
+  $server_options = hiera_hash('ssh::server_options')
+  $client_options = hiera_hash('ssh::client_options')
+  $ports = $server_options['Port']
 
   # Set SELinux for SSH
   # This will add ports into ssh_port_t context
@@ -22,7 +23,12 @@ class profiles::ssh {
     }
   }
 
-  include ::ssh
+  class { ::ssh :
+    validate_sshd_file => true,
+    server_options     => $server_options,
+    client_options     => $client_options,
+  }
+
 
   # TODO
   # Write down Firewall Settings here
