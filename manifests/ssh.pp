@@ -15,7 +15,7 @@ class profiles::ssh {
   # Set SELinux for SSH
   # This will add ports into ssh_port_t context
   include  '::selinux'
-  $ports.each |String $port| {
+  $ports.each |Integer $port| {
     ::selinux::port { "selinux_ssh_${port}":
       context  => 'ssh_port_t',
       port     => $port,
