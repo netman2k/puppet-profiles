@@ -30,7 +30,6 @@ class profiles::base {
       true  => [],
       false => $svc['aliases']
     }
-    $_aliases = $svc['aliases']
     $_comment = $svc['comment']
     ::etc_services { "${_name}/${_protocol}":
       port    => $_port,
