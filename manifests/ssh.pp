@@ -14,12 +14,12 @@ class profiles::ssh {
 
   include  '::selinux'
 
-  $ports.each |String $port| {
+  $ports.each |Integer $port| {
     # Set SELinux for SSH
     # This will add ports into ssh_port_t context
     ::selinux::port { "selinux_ssh_${port}":
       context  => 'ssh_port_t',
-      port     => Integer($port),
+      port     => $port,
       protocol => 'tcp',
       tag      => [ 'selinux_port' ]
     }
