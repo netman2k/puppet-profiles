@@ -11,6 +11,12 @@ class profiles::base {
   $motd_content =  hiera('profiles::base::motd')
   $login_defs_options = hiera_hash('profiles::base::login_defs::options')
   $services = hiera_array('profiles::base::services')
+  $securetty = hiera_array('profiles::base::securetty')
+
+  $_ttys = empty($securetty) ? {
+    false   => $securetty,
+    default => [ 'console' ]
+  }
 
   file { '/etc/motd':
     ensure  => file,
@@ -37,6 +43,13 @@ class profiles::base {
       comment => $_comment,
       tag     => [ 'etc_services' ]
     }
+  }
+
+  # Set tty on /etc/securetty
+  file { '/etc/securetty':
+    ensure  => file,
+    module  => '0400',
+    content => $_ttys,
   }
 
 }
