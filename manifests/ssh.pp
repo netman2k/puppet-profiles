@@ -24,8 +24,8 @@ class profiles::ssh {
     }
     # Adds service ports into /etc/services
     ::etc_services { "kss-ssh-${port}/tcp":
-      port    => $port,
-      aliases => [ 'ssh' ],
+      port    => String($port, "%d"),
+      aliases => [ 'ssh', 'kss-ssh' ],
       comment => 'The Secure Shell (SSH) Protocol for CDNetworks'
     }
   }
