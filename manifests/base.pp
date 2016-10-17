@@ -48,7 +48,7 @@ class profiles::base {
   # Set tty on /etc/securetty
   file { '/etc/securetty':
     ensure  => file,
-    module  => '0400',
+    mode    => '0400',
     content => $_ttys,
   }
 
