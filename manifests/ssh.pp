@@ -21,12 +21,14 @@ class profiles::ssh {
       context  => 'ssh_port_t',
       port     => $port,
       protocol => 'tcp',
+      tag      => [ 'selinux_port' ]
     }
     # Adds service ports into /etc/services
     ::etc_services { "ssh-${port}/tcp":
       port    => String($port, "%d"),
       aliases => [ 'ssh', 'kss-ssh' ],
-      comment => 'The Secure Shell (SSH) Protocol for CDNetworks'
+      comment => 'The Secure Shell (SSH) Protocol for CDNetworks',
+      tag     => [ 'etc_services' ]
     }
   }
 

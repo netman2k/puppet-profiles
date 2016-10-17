@@ -35,6 +35,7 @@ class profiles::base {
       port    => $_port,
       aliases => $_aliases,
       comment => $_comment,
+      tag     => [ 'etc_services' ]
     }
   }
 

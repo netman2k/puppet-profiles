@@ -15,7 +15,8 @@ class profiles::monitoring::nrpe {
     ::etc_services { "nrpe-${port}/tcp":
       port    => String($port, "%d"),
       aliases => [ 'nagios-nrpe', 'nrpe' ],
-      comment => 'The Nagios NRPE for CDNetworks'
+      comment => 'The Nagios NRPE for CDNetworks',
+      tag     => [ 'etc_services' ]
     }
   }
 }
