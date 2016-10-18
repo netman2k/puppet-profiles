@@ -52,4 +52,7 @@ class profiles::base {
     content => $_ttys,
   }
 
+  # The below will lookup limits::entries key from hiera
+  class { '::limits': }
+
 }
