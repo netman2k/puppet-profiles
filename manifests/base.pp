@@ -12,6 +12,7 @@ class profiles::base {
   $login_defs_options = hiera_hash('profiles::base::login_defs::options')
   $services = hiera_array('profiles::base::services')
   $securetty = hiera_array('profiles::base::securetty')
+  $profile_d = hiera_hash('profiles::base::etc_profile_d')
 
   $_ttys = empty($securetty) ? {
     false   => $securetty,
@@ -54,5 +55,14 @@ class profiles::base {
 
   # The below will lookup limits::entries key from hiera
   class { '::limits': }
+
+  $profile_default = {
+    ensure  => file,
+    mode    => '0644',
+    owner   => 'root',
+    group   => 'root'
+  }
+  # Set environment variables in the /etc/profile.d
+  create_resources(file, $profile_d, $profile_default)
 
 }
