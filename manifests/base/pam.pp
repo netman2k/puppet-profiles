@@ -12,5 +12,5 @@ class profiles::base::pam(){
 
     # The below will lookup the values via hiera
     # https://github.com/ghoneycutt/puppet-module-pam
-    class { '::pam::limits_fragments': }
+    class { '::pam': }
 }
