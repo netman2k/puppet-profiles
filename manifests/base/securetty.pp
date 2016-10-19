@@ -18,7 +18,7 @@ class profiles::base::securetty(
     ensure  => file,
     mode    => '0400',
     owner   => 'root',
-    group   => 'root'
+    group   => 'root',
     content => $securetty,
   }
 }

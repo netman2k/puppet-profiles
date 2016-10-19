@@ -9,7 +9,7 @@
 #
 ## Authors
 # 	Daehyung Lee <daehyung@gmail.com>
-class profiles::base::securetty(
+class profiles::base::services(
   $services = []
 ){
 

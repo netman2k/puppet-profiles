@@ -13,7 +13,7 @@ class profiles::base::motd(
   $motd_content
 ){
 
-  if empty($motd_content)
+  if empty($motd_content) {
     fail('You need to set any content of the motd via hiera or param!')
   }
 
@@ -21,7 +21,7 @@ class profiles::base::motd(
     ensure  => file,
     mode    => '0644',
     owner   => 'root',
-    group   => 'root'
+    group   => 'root',
     content => $motd_content,
   }
 
