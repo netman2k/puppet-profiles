@@ -34,8 +34,7 @@ class profiles::base {
     env_hash => $env_hash,
   }
 
-  # The below will lookup limits::entries key from hiera
-  class { '::limits': }
+  class { '::profiles::base::pam': }
 
   class { '::selinux': }
 

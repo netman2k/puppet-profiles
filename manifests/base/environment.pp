@@ -5,12 +5,23 @@
 ## Parameters
 #    [*env_hash*]
 #      The content of the /etc/profile.d to set
-#      Example:
-#        '10-environment.sh' => {
-#           'JAVA_HOME' => '/usr/java/jdk-1.9.0'
-#           'PATH'     => '$JAVA_HOME/bin:/usr/local/abc/bin:$PATH',
-#        }
+#      DSL Example:
+#      {
+#        '10-environment.sh' => "export PATH=/usr/local/bin:$PATH\n
+#           [ -z $TMOUT ] && readonly TMOUT=900",
+#        '20-kernel.sh' => "# Managed by Puppet\n
+#           export DAEMON_COREFILE_LIMIT=unlimited"
+#      }
 #
+#      Hiera Example:
+#        profiles::base::environment::env_hash:
+#         "10-environments.sh": |
+#           # Managed by Puppet
+#           export PATH=/usr/local/bin:$PATH
+#           [ -z $TMOUT ] && readonly TMOUT=900
+#         "20-kernel.sh": |
+#           # Managed by Puppet
+#           export DAEMON_COREFILE_LIMIT=unlimited
 ## Variables
 #
 ## Authors
