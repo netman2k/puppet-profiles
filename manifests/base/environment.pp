@@ -16,10 +16,11 @@
 ## Authors
 #   Daehyung Lee <daehyung@gmail.com>
 class profiles::base::environment(
+  $profile_d_dir = '/etc/profile.d',
   $env_hash = {}
 ){
 
-  $file_default = {
+  File {
     ensure  => file,
     mode    => '0644',
     owner   => 'root',
@@ -30,7 +31,10 @@ class profiles::base::environment(
   # a content of the file
   $env_hash.each |String $filename, String $content|{
     # Set environment variables in the /etc/profile.d
-    create_resources(file, $filename, $file_default)
+    file { $filename:
+      path    => "${profile_d_dir}/${filename}",
+      content => $content,
+    }
   }
 
 
