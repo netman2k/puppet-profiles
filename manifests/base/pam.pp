@@ -6,6 +6,10 @@
 #  what's going on when you run it.
 #  https://github.com/ghoneycutt/puppet-module-pam
 #
+#  also this class uses access.conf to user access control
+#  you should read man page below before setting
+#  https://linux.die.net/man/5/access.conf
+#
 ## Parameters
 #
 ## Variables
