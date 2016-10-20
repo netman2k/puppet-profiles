@@ -14,6 +14,25 @@
 # 	Daehyung Lee <daehyung@gmail.com>
 class profiles::base::pam(){
 
+    # ghoneycutt/pam has set 'pam_fprintd.so' in the default_pam_auth_lines
+    # but we don't need it, that's why I reassign this values as below:
+    $pam_auth_lines = [
+      'auth        required      pam_env.so',
+      'auth        sufficient    pam_unix.so nullok try_first_pass',
+      'auth        requisite     pam_succeed_if.so uid >= 1000 quiet_success',
+      'auth        required      pam_deny.so',
+    ]
+
+    # ghoneycutt/pam has set to be md5 password is sufficient
+    # but we don't want it. so I changed it with sha512.
+    $pam_password_password_lines = [
+      'password    requisite     pam_pwquality.so try_first_pass local_users_only retry=3 authtok_type=',
+      'password    sufficient    pam_unix.so sha512 shadow nullok try_first_pass use_authtok',
+      'password    required      pam_deny.so',
+    ]
     # The below will lookup the values via hiera
-    class { '::pam': }
+    class { '::pam':
+      pam_auth_lines              => $pam_auth_lines,
+      pam_password_password_lines => $pam_password_password_lines,
+    }
 }
