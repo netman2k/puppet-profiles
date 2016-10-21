@@ -2,15 +2,15 @@
 #  This class manages content of the /etc/securetty
 #
 ## Parameters
-#  	[*securetty*]
-#			The content of the /etc/securetty to set
+#    [*securetty*]
+#      The content of the /etc/securetty to set
 #
 ## Variables
 #
 ## Authors
-# 	Daehyung Lee <daehyung@gmail.com>
+#   Daehyung Lee <daehyung@gmail.com>
 class profiles::base::securetty(
-  $securetty = 'console',
+  Array $securetty,
 ){
 
   # Set tty on /etc/securetty
@@ -19,6 +19,6 @@ class profiles::base::securetty(
     mode    => '0400',
     owner   => 'root',
     group   => 'root',
-    content => $securetty,
+    content => join($securetty, '\n'),
   }
 }

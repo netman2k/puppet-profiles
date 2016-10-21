@@ -2,15 +2,15 @@
 #  This class manages welcome screen which is defined in the /etc/motd
 #
 ## Parameters
-#  	[*motd_content*]
-#			The content of the /etc/motd to set
+#    [*motd_content*]
+#      The content of the /etc/motd to set
 #
 ## Variables
 #
 ## Authors
-# 	Daehyung Lee <daehyung@gmail.com>
+#   Daehyung Lee <daehyung@gmail.com>
 class profiles::base::motd(
-  $motd_content
+  String $motd_content,
 ){
 
   if empty($motd_content) {

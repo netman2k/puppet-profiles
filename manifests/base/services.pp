@@ -2,15 +2,15 @@
 #  This class manages content of the /etc/services
 #
 ## Parameters
-#  	[*securetty*]
-#			The content of the /etc/securetty to set
+#    [*securetty*]
+#      The content of the /etc/securetty to set
 #
 ## Variables
 #
 ## Authors
-# 	Daehyung Lee <daehyung@gmail.com>
+#   Daehyung Lee <daehyung@gmail.com>
 class profiles::base::services(
-  $services = []
+  Array $services,
 ){
 
   # Adds service ports into /etc/services

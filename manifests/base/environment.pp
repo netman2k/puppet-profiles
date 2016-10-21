@@ -27,8 +27,8 @@
 ## Authors
 #   Daehyung Lee <daehyung@gmail.com>
 class profiles::base::environment(
-  $profile_d_dir = '/etc/profile.d',
-  $env_hash = {}
+  String $profile_d_dir = '/etc/profile.d',
+  Hash $env_hash,
 ){
 
   File {
