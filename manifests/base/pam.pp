@@ -18,14 +18,11 @@
 # 	Daehyung Lee <daehyung@gmail.com>
 class profiles::base::pam(){
 
-    $common_allowed_users = hiera_array('profiles::base::pam::allowed_users::common')
-    $additional_allowed_users = hiera_array('profiles::base::pam::allowed_users', [])
+    $allowed_users = hiera_array('profiles::base::pam::allowed_users')
 
-    if empty($common_allowed_users){
-      fail("Could not found any allowed users from hiera, you must check it")
+    if empty($allowed_users){
+      fail("Can not find a key, profiles::base::pam::allowed_users, via hiera")
     }
-
-    $allowed_users = flatten([$common_allowed_users, $additional_allowed_users])
 
     # ghoneycutt/pam has set 'pam_fprintd.so' in the default_pam_auth_lines
     # but we don't need it, that's why I reassign this values as below:
