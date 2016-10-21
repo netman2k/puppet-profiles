@@ -42,5 +42,6 @@ class profiles::base::pam($allowed_users){
       pam_auth_lines              => $pam_auth_lines,
       pam_password_password_lines => $pam_password_password_lines,
       allowed_users               => $allowed_users,
+      manage_nsswitch             => false,
     }
 }
