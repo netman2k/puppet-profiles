@@ -13,6 +13,7 @@ class profiles::base {
   $motd_content = hiera('profiles::base::motd')
   $services = hiera_array('profiles::base::services')
   $env_hash = hiera_hash('profiles::base::environment::env_hash')
+  $allowed_users = hiera_array('profiles::base::pam::allowed_users')
 
   class { '::profiles::base::login_defs':
     login_defs_options => $login_defs_options,
@@ -34,7 +35,9 @@ class profiles::base {
     env_hash => $env_hash,
   }
 
-  class { '::profiles::base::pam': }
+  class { '::profiles::base::pam':
+    allowed_users => $allowed_users,
+  }
 
   class { '::selinux': }
 

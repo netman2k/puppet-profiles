@@ -11,18 +11,15 @@
 #  https://linux.die.net/man/5/access.conf
 #
 ## Parameters
+#    [*allowed_users*]
+#     a list of the users who can allow login
+#
 #
 ## Variables
 #
 ## Authors
 # 	Daehyung Lee <daehyung@gmail.com>
-class profiles::base::pam(){
-
-    $allowed_users = hiera_array('profiles::base::pam::allowed_users')
-
-    if empty($allowed_users){
-      fail("Can not find a key, profiles::base::pam::allowed_users, via hiera")
-    }
+class profiles::base::pam($allowed_users){
 
     # ghoneycutt/pam has set 'pam_fprintd.so' in the default_pam_auth_lines
     # but we don't need it, that's why I reassign this values as below:
