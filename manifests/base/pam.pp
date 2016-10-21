@@ -19,31 +19,15 @@
 #
 ## Authors
 # 	Daehyung Lee <daehyung@gmail.com>
-class profiles::base::pam($allowed_users){
+class profiles::base::pam(
+  Array $allowed_users,
+){
 
-    # ghoneycutt/pam has set 'pam_fprintd.so' in the default_pam_auth_lines
-    # but we don't need it, that's why I reassign this values as below:
-    $pam_auth_lines = [
-      'auth        required      pam_env.so',
-      'auth        sufficient    pam_unix.so nullok try_first_pass',
-      'auth        requisite     pam_succeed_if.so uid >= 1000 quiet_success',
-      'auth        required      pam_deny.so',
-    ]
-
-    # ghoneycutt/pam has set to be md5 password is sufficient
-    # but we don't want it. so I changed it with sha512.
-    $pam_password_password_lines = [
-      'password    requisite     pam_pwquality.so try_first_pass local_users_only retry=3 authtok_type=',
-      'password    sufficient    pam_unix.so sha512 shadow nullok try_first_pass use_authtok',
-      'password    required      pam_deny.so',
-    ]
     # The below will lookup the values via hiera
     # Note that I set the pam class not to manage nsswitch
     # If you want to manage nsswitch you should install sssd package first.
     class { '::pam':
-      pam_auth_lines              => $pam_auth_lines,
-      pam_password_password_lines => $pam_password_password_lines,
-      allowed_users               => $allowed_users,
-      manage_nsswitch             => false,
+      allowed_users   => $allowed_users,
+      manage_nsswitch => false,
     }
 }
