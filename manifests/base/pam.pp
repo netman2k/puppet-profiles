@@ -38,6 +38,8 @@ class profiles::base::pam($allowed_users){
       'password    required      pam_deny.so',
     ]
     # The below will lookup the values via hiera
+    # Note that I set the pam class not to manage nsswitch
+    # If you want to manage nsswitch you should install sssd package first.
     class { '::pam':
       pam_auth_lines              => $pam_auth_lines,
       pam_password_password_lines => $pam_password_password_lines,
