@@ -14,7 +14,7 @@ class profiles::base {
   $services = hiera_array('profiles::base::services')
   $env_hash = hiera_hash('profiles::base::environment::env_hash')
   $allowed_users = hiera_array('profiles::base::pam::allowed_users')
-  $aliases = hiera_array('profiles::base::aliases')
+  $aliases = hiera_hash('profiles::base::aliases::aliases')
 
   class { '::profiles::base::login_defs':
     login_defs_options => $login_defs_options,
