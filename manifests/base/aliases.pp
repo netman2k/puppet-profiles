@@ -25,6 +25,6 @@ class profiles::base::aliases(
     refreshonly => true,
   }
 
-  create_resource(mailalias, $aliases, $default_mailalias)
+  create_resources(mailalias, $aliases, $default_mailalias)
 
 }
