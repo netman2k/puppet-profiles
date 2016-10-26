@@ -1,7 +1,8 @@
-# Class: Profiles::rsyslog
-## Parameters
+# == Class: Profiles::rsyslog
 #
-## Variables
+# === Parameters
+#
+# === Variables
 #
 # [*log_local_config_1*]
 #   Default setting for local logging

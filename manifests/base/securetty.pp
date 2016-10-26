@@ -1,13 +1,13 @@
-# Class: profiles::base::securetty
+# == Class: profiles::base::securetty
 #  This class manages content of the /etc/securetty
 #
-## Parameters
+# === Parameters
 #    [*securetty*]
 #      The content of the /etc/securetty to set
 #
-## Variables
+# === Variables
 #
-## Authors
+# === Authors
 #   Daehyung Lee <daehyung@gmail.com>
 class profiles::base::securetty(
   Array $securetty,

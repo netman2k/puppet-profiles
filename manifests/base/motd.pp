@@ -1,13 +1,13 @@
-# Class: Profiles::base::motd
+# == Class: Profiles::base::motd
 #  This class manages welcome screen which is defined in the /etc/motd
 #
-## Parameters
+# === Parameters
 #    [*motd_content*]
 #      The content of the /etc/motd to set
 #
-## Variables
+# === Variables
 #
-## Authors
+# === Authors
 #   Daehyung Lee <daehyung@gmail.com>
 class profiles::base::motd(
   String $motd_content,

@@ -1,10 +1,10 @@
-# Class: Profiles::monitoring::nrpe
+# == Class: Profiles::monitoring::nrpe
 #   This class set basic NRPE settings
-## Parameters
+# === Parameters
 #
-## Variables
+# === Variables
 #
-## Authors
+# === Authors
 #   Daehyung.lee <daehyung@gmail.com>
 class profiles::monitoring::nrpe {
 

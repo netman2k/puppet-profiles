@@ -1,13 +1,13 @@
-# Class: profiles::base::login_defs
+# == Class: profiles::base::login_defs
 #  This class manages content of the /etc/login.defs
 #
-## Parameters
+# === Parameters
 #    [*login_defs_options*]
 #      The content of the /etc/login.defs to set
 #
-## Variables
+# === Variables
 #
-## Authors
+# === Authors
 #   Daehyung Lee <daehyung@gmail.com>
 class profiles::base::login_defs(
   Hash $login_defs_options,

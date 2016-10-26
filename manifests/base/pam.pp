@@ -1,4 +1,4 @@
-# Class: profiles::base::pam
+# == Class: profiles::base::pam
 #  This class manages content of the pam related stuff
 #  Internally, this class uses the ghoneycutt/pam module.
 #  this module set many things via hiera mostly
@@ -10,14 +10,14 @@
 #  you should read man page below before setting
 #  https://linux.die.net/man/5/access.conf
 #
-## Parameters
+# === Parameters
 #    [*allowed_users*]
 #     a list of the users who can allow login
 #
 #
-## Variables
+# === Variables
 #
-## Authors
+# === Authors
 # 	Daehyung Lee <daehyung@gmail.com>
 class profiles::base::pam(
   Array $allowed_users,

@@ -1,14 +1,14 @@
-# Class: profiles::base::aliases
+# == Class: profiles::base::aliases
 #  This class manages content of the /etc/aliases
 #
-## Parameters
+# === Parameters
 #    [*aliases*]
 #      The content of the /etc/aliases to set
 #
 #
-## Variables
+# === Variables
 #
-## Authors
+# === Authors
 #   Daehyung Lee <daehyung@gmail.com>
 class profiles::base::aliases(
   Hash $aliases,

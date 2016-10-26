@@ -1,9 +1,9 @@
-# Class: profiles::snmp
+# == Class: profiles::snmp
 # This class set the default configuration on snmpd.conf
 #
-## Parameters
+# === Parameters
 #
-## Variables
+# === Variables
 #
 # [*ro_community]
 #   Read-only (RO) community string or array for snmptrap daemon.

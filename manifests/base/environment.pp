@@ -1,8 +1,8 @@
-# Class: profiles::base::environment
+# == Class: profiles::base::environment
 #  This class manages environment variables
 #  which are stored in the /etc/profile.d directory
 #
-## Parameters
+# === Parameters
 #    [*env_hash*]
 #      The content of the /etc/profile.d to set
 #      DSL Example:
@@ -22,9 +22,9 @@
 #         "20-kernel.sh": |
 #           # Managed by Puppet
 #           export DAEMON_COREFILE_LIMIT=unlimited
-## Variables
+# === Variables
 #
-## Authors
+# === Authors
 #   Daehyung Lee <daehyung@gmail.com>
 class profiles::base::environment(
   String $profile_d_dir = '/etc/profile.d',

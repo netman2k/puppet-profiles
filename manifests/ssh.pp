@@ -1,10 +1,10 @@
-# Class: Profiles::ssh
+# == Class: Profiles::ssh
 #
-## Parameters
+# === Parameters
 #
-## Variables
+# === Variables
 #
-## Authors
+# === Authors
 # Daehyung.lee <daehyung@gmail.com>
 #
 class profiles::ssh {

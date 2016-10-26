@@ -1,13 +1,13 @@
-# Class: profiles::base::services
+# == Class: profiles::base::services
 #  This class manages content of the /etc/services
 #
-## Parameters
+# === Parameters
 #    [*securetty*]
 #      The content of the /etc/securetty to set
 #
-## Variables
+# === Variables
 #
-## Authors
+# === Authors
 #   Daehyung Lee <daehyung@gmail.com>
 class profiles::base::services(
   Array $services,

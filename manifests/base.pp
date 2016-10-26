@@ -1,10 +1,10 @@
 # Class: Profiles::base
 #
-## Parameters
+# === Parameters
 #
-## Variables
+# === Variables
 #
-## Authors
+# === Authors
 #  Daehyung Lee <daehyung@gmail.com>
 class profiles::base {
 
